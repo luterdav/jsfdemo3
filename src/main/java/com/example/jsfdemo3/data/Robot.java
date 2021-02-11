@@ -1,21 +1,27 @@
 package com.example.jsfdemo3.data;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 @Table(name = "prime_robot")
 public class Robot extends AbstractEntity {
 
+    @NotEmpty(message = "{name.not.null}")
     @Column
     private String name;
 
+    @NotEmpty(message = "{type.not.null}")
     @Column
     private String type;
 
+    @NotNull(message = "{weapon.not.null}")
     @JoinColumn(name = "id")
     private Weapon weapon;
 

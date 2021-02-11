@@ -10,10 +10,11 @@
 <h:body>
     <h1>Robot karbantartó alkamazásunk</h1>
     <h:form>
+        <p:messages/>
         <p:panelGrid columns="2">
             <p:outputLabel value="Név"/>
             <p:inputText value="#{weaponManagerMBean.selectedWeapon.name}"/>
-            <p:commandButton value="Mentés" actionListener="#{weaponManagerMBean.save}" update="@form"/>
+            <p:commandButton validateClient="true" value="Mentés" actionListener="#{weaponManagerMBean.save}" update="@form"/>
         </p:panelGrid>
 
         <p:dataTable id="weaponTable" value="#{weaponManagerMBean.weaponList}" var="weapon" rows="10"
@@ -55,8 +56,8 @@
                 </h:outputText>
             </p:column>
             <p:column headerText="Funkciók">
-                <p:commandButton value="Törlés" actionListener="#{weaponManagerMBean.delete(weapon.id)}" update="@form"/>
-                <p:commandButton value="Módosítás" actionListener="#{weaponManagerMBean.selectOne(weapon)}"
+                <p:commandButton value="Törlés" process="@this" actionListener="#{weaponManagerMBean.delete(weapon.id)}" update="@form"/>
+                <p:commandButton value="Módosítás" process="@this" actionListener="#{weaponManagerMBean.selectOne(weapon)}"
                                  update="@form"/>
 
             </p:column>

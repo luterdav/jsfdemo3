@@ -1,5 +1,7 @@
 package com.example.jsfdemo3.data;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -9,6 +11,7 @@ import java.util.Date;
 @Table(name = "prime_weapon")
 public class Weapon extends AbstractEntity {
 
+    @NotEmpty (message = "{name.not.null}")
     @Column(unique = true)
     private String name;
 

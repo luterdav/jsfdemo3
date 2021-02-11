@@ -9,6 +9,7 @@
 <h:body>
     <h1>Robot karbantartó alkamazásunk</h1>
     <h:form>
+        <p:messages />
         <p:panelGrid columns="2">
             <p:outputLabel value="Név"/>
             <p:inputText value="#{robotManagerMBean.selectedRobot.name}"/>
@@ -20,7 +21,7 @@
                 <f:selectItems value="#{robotManagerMBean.weaponList}" var="weapon" itemLabel="#{weapon.name}"
                                itemValue="#{weapon}"/>
             </p:selectOneMenu>
-            <p:commandButton value="Mentés" actionListener="#{robotManagerMBean.save}" update="@form"/>
+            <p:commandButton validateClient="true" value="Mentés" actionListener="#{robotManagerMBean.save}" update="@form"/>
         </p:panelGrid>
 
         <p:dataTable id="robotTable" value="#{robotManagerMBean.robotList}" var="robot" rows="10"
@@ -70,8 +71,8 @@
                 </h:outputText>
             </p:column>
             <p:column headerText="Funkciók">
-                <p:commandButton value="Törlés" actionListener="#{robotManagerMBean.delete(robot.id)}" update="@form"/>
-                <p:commandButton value="Módosítás" actionListener="#{robotManagerMBean.selectOne(robot)}"
+                <p:commandButton value="Törlés" process="@this" actionListener="#{robotManagerMBean.delete(robot.id)}" update="@form"/>
+                <p:commandButton value="Módosítás" process="@this" actionListener="#{robotManagerMBean.selectOne(robot)}"
                                  update="@form"/>
 
             </p:column>
